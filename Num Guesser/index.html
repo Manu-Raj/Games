@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+
+    <title>Number Guessing Game</title>
+
+    <link rel="stylesheet" href="src/style.css" />
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="game-card">
+
+            <!-- LEFT PANEL -->
+
+            <div class="left-panel">
+
+                <h1>
+                    Number Guessing Game
+                </h1>
+
+                <p class="subtitle">
+                    Guess the secret 4-digit number
+                </p>
+
+                <div class="input-section">
+
+                    <input type="text" id="guessInput" maxlength="4" inputmode="numeric" pattern="[0-9]*"
+                        autocomplete="off" enterkeyhint="done" placeholder="Enter 4 digits" />
+
+                    <button id="guessBtn">
+                        Submit Guess
+                    </button>
+
+                </div>
+
+                <div class="status-section">
+
+                    <p id="message">
+                        Start guessing...
+                    </p>
+
+                    <p id="attempts">
+                        Attempts: 0
+                    </p>
+
+                    <p id="bestScore">
+                        🏆 Personal Best: -
+                    </p>
+
+                </div>
+
+            </div>
+
+            <!-- RIGHT PANEL -->
+
+            <div class="right-panel">
+
+                <div class="history-title">
+                    Guess History
+                </div>
+
+                <div class="history-header">
+
+                    <span>Guess</span>
+
+                    <span>Feedback</span>
+
+                </div>
+
+                <div id="historyList"></div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="src/script.js"></script>
+
+</body>
+</html>

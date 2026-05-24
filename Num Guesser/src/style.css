@@ -1,0 +1,517 @@
+* {
+
+    margin: 0;
+
+    padding: 0;
+
+    box-sizing: border-box;
+
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+
+    font-family: Inter, Arial, sans-serif;
+
+    min-height: 100dvh;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    background:
+        radial-gradient(
+            circle at top,
+            #1e293b 0%,
+            #0f172a 45%,
+            #020617 100%
+        );
+
+    color: white;
+
+    padding:
+        max(16px, env(safe-area-inset-top))
+        max(16px, env(safe-area-inset-right))
+        max(16px, env(safe-area-inset-bottom))
+        max(16px, env(safe-area-inset-left));
+
+    overflow-x: hidden;
+
+    overflow-y: auto;
+
+    -webkit-text-size-adjust: 100%;
+}
+
+/* MAIN CONTAINER */
+
+.container {
+
+    width: 100%;
+
+    max-width: 1500px;
+
+    min-height: 92dvh;
+}
+
+/* MAIN GAME CARD */
+
+.game-card {
+
+    display: grid;
+
+    grid-template-columns: 1.1fr 0.9fr;
+
+    gap: 28px;
+
+    min-height: 92dvh;
+
+    background:
+        rgba(255, 255, 255, 0.04);
+
+    border:
+        1px solid rgba(255, 255, 255, 0.06);
+
+    border-radius: 28px;
+
+    padding: 30px;
+
+    backdrop-filter: blur(14px);
+
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.45);
+
+    overflow: hidden;
+}
+
+/* LEFT PANEL */
+
+.left-panel {
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    padding-right: 10px;
+}
+
+/* TITLE */
+
+h1 {
+
+    font-size: 56px;
+
+    font-weight: 800;
+
+    letter-spacing: -2px;
+
+    margin-bottom: 10px;
+
+    line-height: 1.05;
+}
+
+.subtitle {
+
+    color: #94a3b8;
+
+    font-size: 18px;
+
+    margin-bottom: 45px;
+}
+
+/* INPUT SECTION */
+
+.input-section {
+
+    display: flex;
+
+    gap: 16px;
+
+    margin-bottom: 55px;
+}
+
+input {
+
+    flex: 1;
+
+    height: 64px;
+
+    border:
+        1px solid rgba(255, 255, 255, 0.08);
+
+    border-radius: 18px;
+
+    background:
+        rgba(255, 255, 255, 0.05);
+
+    padding: 0 24px;
+
+    color: white;
+
+    font-size: 20px;
+
+    transition: 0.2s;
+}
+
+input:focus {
+
+    outline: none;
+
+    border-color: #3b82f6;
+
+    background:
+        rgba(255, 255, 255, 0.08);
+
+    box-shadow:
+        0 0 0 4px
+        rgba(59, 130, 246, 0.15);
+}
+
+input::placeholder {
+
+    color: #64748b;
+}
+
+/* BUTTON */
+
+button {
+
+    width: 230px;
+
+    min-height: 64px;
+
+    border: none;
+
+    border-radius: 18px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #2563eb,
+            #3b82f6
+        );
+
+    color: white;
+
+    font-size: 18px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+
+    touch-action: manipulation;
+
+    box-shadow:
+        0 10px 25px
+        rgba(37, 99, 235, 0.35);
+}
+
+button:hover {
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 14px 30px
+        rgba(37, 99, 235, 0.45);
+}
+
+button:disabled {
+
+    opacity: 0.5;
+
+    cursor: not-allowed;
+}
+
+/* STATUS SECTION */
+
+.status-section {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 12px;
+}
+
+#message {
+
+    font-size: 64px;
+
+    font-weight: 900;
+
+    line-height: 1;
+
+    word-break: break-word;
+}
+
+#attempts {
+
+    font-size: 22px;
+
+    color: #94a3b8;
+}
+
+#bestScore {
+
+    font-size: 22px;
+
+    font-weight: 700;
+
+    color: #facc15;
+}
+
+/* RIGHT PANEL */
+
+.right-panel {
+
+    background:
+        rgba(255, 255, 255, 0.03);
+
+    border:
+        1px solid rgba(255, 255, 255, 0.05);
+
+    border-radius: 22px;
+
+    overflow: hidden;
+
+    display: flex;
+
+    flex-direction: column;
+
+    min-height: 300px;
+}
+
+/* HISTORY TITLE */
+
+.history-title {
+
+    padding: 24px;
+
+    font-size: 24px;
+
+    font-weight: 800;
+
+    border-bottom:
+        1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* HISTORY HEADER */
+
+.history-header {
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    padding: 18px 24px;
+
+    background:
+        rgba(255, 255, 255, 0.04);
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    color: #94a3b8;
+}
+
+.history-header span:last-child {
+
+    text-align: right;
+}
+
+/* SCROLLABLE HISTORY */
+
+#historyList {
+
+    flex: 1;
+
+    overflow-y: auto;
+
+    max-height: 100%;
+}
+
+/* CUSTOM SCROLLBAR */
+
+#historyList::-webkit-scrollbar {
+
+    width: 8px;
+}
+
+#historyList::-webkit-scrollbar-track {
+
+    background: transparent;
+}
+
+#historyList::-webkit-scrollbar-thumb {
+
+    background:
+        rgba(255, 255, 255, 0.15);
+
+    border-radius: 20px;
+}
+
+/* HISTORY ITEM */
+
+.history-item {
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    align-items: center;
+
+    padding: 22px 24px;
+
+    border-top:
+        1px solid rgba(255, 255, 255, 0.05);
+
+    transition: 0.2s;
+}
+
+.history-item:hover {
+
+    background:
+        rgba(255, 255, 255, 0.03);
+}
+
+/* GUESS NUMBER */
+
+.guess-number {
+
+    font-size: 20px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+}
+
+/* FEEDBACK */
+
+.feedback {
+
+    text-align: right;
+
+    font-size: 20px;
+
+    font-weight: 700;
+
+    color: #38bdf8;
+}
+
+/* WIN STATE */
+
+.win {
+
+    color: #22c55e !important;
+}
+
+/* TABLETS */
+
+@media (max-width: 1100px) {
+
+    .game-card {
+
+        grid-template-columns: 1fr;
+    }
+
+    .right-panel {
+
+        min-height: 350px;
+    }
+
+}
+
+/* MOBILE */
+
+@media (max-width: 768px) {
+
+    body {
+
+        align-items: flex-start;
+    }
+
+    .container {
+
+        min-height: auto;
+    }
+
+    .game-card {
+
+        grid-template-columns: 1fr;
+
+        min-height: auto;
+
+        padding: 20px;
+
+        gap: 20px;
+    }
+
+    h1 {
+
+        font-size: 36px;
+
+        line-height: 1.1;
+    }
+
+    .subtitle {
+
+        font-size: 16px;
+
+        margin-bottom: 30px;
+    }
+
+    .input-section {
+
+        flex-direction: column;
+
+        margin-bottom: 35px;
+    }
+
+    input {
+
+        height: 58px;
+
+        font-size: 18px;
+    }
+
+    button {
+
+        width: 100%;
+
+        min-height: 58px;
+    }
+
+    #message {
+
+        font-size: 38px;
+    }
+
+    #attempts,
+    #bestScore {
+
+        font-size: 18px;
+    }
+
+    .history-item {
+
+        padding: 18px;
+    }
+
+    .guess-number,
+    .feedback {
+
+        font-size: 18px;
+    }
+
+    #historyList {
+
+        max-height: 300px;
+    }
+
+}
