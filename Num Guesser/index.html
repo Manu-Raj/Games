@@ -5,19 +5,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>Crack the Code</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-        href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700;9..40,800&family=DM+Mono:wght@500&display=swap"
-        rel="stylesheet" />
-    <link rel="stylesheet" href="src/style.css" />
+    <link rel="stylesheet" href="src/script.js" />
 </head>
 
-<body>
+<body class="theme-slate">
 
     <!-- SETTINGS BTN -->
-    <button class="settings-btn" id="settingsBtn" aria-label="Settings">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    <button class="settings-btn" id="settingsBtn" aria-label="Open settings">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
             stroke-linecap="round" stroke-linejoin="round">
             <circle cx="12" cy="12" r="3" />
             <path
@@ -25,173 +20,222 @@
         </svg>
     </button>
 
-    <!-- SETTINGS DRAWER -->
-    <div class="settings-overlay" id="settingsOverlay"></div>
-    <div class="settings-panel" id="settingsPanel">
-        <div class="settings-header">
+    <!-- SETTINGS OVERLAY -->
+    <div class="s-overlay" id="sOverlay"></div>
+
+    <!-- SETTINGS PANEL -->
+    <div class="s-panel" id="sPanel">
+        <div class="s-header">
             <span>Settings</span>
-            <button class="settings-close" id="settingsClose" aria-label="Close settings">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            <button class="s-close" id="sClose" aria-label="Close settings">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
                     stroke-linecap="round">
                     <line x1="18" y1="6" x2="6" y2="18" />
                     <line x1="6" y1="6" x2="18" y2="18" />
                 </svg>
             </button>
         </div>
-
-        <div class="settings-body">
-            <div class="settings-section">
-                <div class="settings-label">Game Mode</div>
+        <div class="s-body">
+            <div class="s-section">
+                <div class="s-label">Game Mode</div>
                 <div class="seg-group" id="modeGroup">
-                    <button class="seg active" data-mode="computer">vs Computer</button>
-                    <button class="seg" data-mode="twoplayer">2 Players</button>
+                    <button class="seg" data-val="computer">vs Computer</button>
+                    <button class="seg" data-val="twoplayer">2 Players</button>
                 </div>
             </div>
-
-            <div class="settings-section">
-                <div class="settings-label">Digits</div>
+            <div class="s-section">
+                <div class="s-label">Number of Digits</div>
                 <div class="seg-group" id="digitsGroup">
-                    <button class="seg active" data-digits="4">4</button>
-                    <button class="seg" data-digits="5">5</button>
-                    <button class="seg" data-digits="6">6</button>
+                    <button class="seg" data-val="4">4 digits</button>
+                    <button class="seg" data-val="5">5 digits</button>
+                    <button class="seg" data-val="6">6 digits</button>
                 </div>
             </div>
-
-            <div class="settings-section">
-                <div class="settings-label">Duplicate digits</div>
-                <label class="toggle-row">
-                    <span>Allow duplicates (e.g. 1884)</span>
-                    <div class="toggle-wrap">
-                        <input type="checkbox" id="dupToggle" checked />
-                        <span class="toggle-track"><span class="toggle-thumb"></span></span>
+            <div class="s-section">
+                <div class="s-label">Duplicate Digits</div>
+                <label class="dup-card">
+                    <div class="dup-info">
+                        <span class="dup-title">Allow duplicates</span>
+                        <span class="dup-eg">e.g. 1884, 3321</span>
+                    </div>
+                    <div class="tog-wrap">
+                        <input type="checkbox" id="dupToggle" />
+                        <span class="tog-track"><span class="tog-thumb"></span></span>
                     </div>
                 </label>
             </div>
-
-            <div class="settings-section">
-                <div class="settings-label">Theme</div>
+            <div class="s-section">
+                <div class="s-label">Theme</div>
                 <div class="theme-grid" id="themeGrid">
-                    <button class="theme-opt active" data-theme="violet">
-                        <div class="th-swatch" style="background:#7c3aed"></div>
-                        <span>Violet</span>
-                    </button>
-                    <button class="theme-opt" data-theme="teal">
-                        <div class="th-swatch" style="background:#0f766e"></div>
-                        <span>Teal</span>
-                    </button>
-                    <button class="theme-opt" data-theme="rose">
-                        <div class="th-swatch" style="background:#be123c"></div>
-                        <span>Rose</span>
-                    </button>
-                    <button class="theme-opt" data-theme="slate">
-                        <div class="th-swatch" style="background:#38bdf8"></div>
+                    <button class="th-opt" data-val="slate">
+                        <div class="th-swatch" style="background:linear-gradient(135deg,#0f172a,#38bdf8)"></div>
                         <span>Slate</span>
                     </button>
-                    <button class="theme-opt" data-theme="retro">
-                        <div class="th-swatch" style="background:#39ff14;border:1px solid #1a1a1a"></div>
+                    <button class="th-opt" data-val="violet">
+                        <div class="th-swatch" style="background:linear-gradient(135deg,#faf8ff,#7c3aed)"></div>
+                        <span>Violet</span>
+                    </button>
+                    <button class="th-opt" data-val="teal">
+                        <div class="th-swatch" style="background:linear-gradient(135deg,#f0fdf9,#0f766e)"></div>
+                        <span>Teal</span>
+                    </button>
+                    <button class="th-opt" data-val="rose">
+                        <div class="th-swatch" style="background:linear-gradient(135deg,#fff1f2,#be123c)"></div>
+                        <span>Rose</span>
+                    </button>
+                    <button class="th-opt" data-val="playful">
+                        <div class="th-swatch"
+                            style="background:linear-gradient(135deg,#ff6b6b,#ffd93d,#6bcb77,#4d96ff)"></div>
+                        <span>Playful</span>
+                    </button>
+                    <button class="th-opt" data-val="retro">
+                        <div class="th-swatch" style="background:#0a0a0a;border:2px solid #39ff14"></div>
                         <span>Retro</span>
                     </button>
                 </div>
             </div>
-
-            <button class="apply-btn" id="applyBtn">Apply & New Game</button>
+            <button class="apply-btn" id="applyBtn">Apply &amp; New Game</button>
         </div>
     </div>
 
-    <!-- ══════════════ SCREENS ══════════════ -->
-
-    <!-- COVER / PASS SCREEN -->
-    <div class="screen" id="coverScreen" style="display:none">
-        <div class="cover-card">
-            <div class="cover-icon">🎮</div>
-            <h2 class="cover-title" id="coverTitle">Player 1's Turn</h2>
-            <p class="cover-sub" id="coverSub">Tap ready to start guessing</p>
-            <button class="cover-btn" id="coverBtn">Ready</button>
-        </div>
-    </div>
-
-    <!-- SETUP SCREEN (2-player secret entry) -->
-    <div class="screen" id="setupScreen" style="display:none">
+    <!-- SETUP SCREEN -->
+    <div class="screen" id="setupScreen">
         <div class="setup-card">
             <div class="setup-badge" id="setupBadge">Player 1</div>
-            <h2 class="setup-title">Set your secret number</h2>
-            <p class="setup-sub" id="setupSub">Enter a <span id="setupDigitCount">4</span>-digit number. The other
-                player won't see it.</p>
+            <h2 class="setup-title">Set your secret</h2>
+            <p class="setup-sub">Enter a <span id="setupDigits">4</span>-digit number — the other player won't see it.
+            </p>
             <input class="setup-input" type="password" id="setupInput" inputmode="numeric" maxlength="4"
                 autocomplete="off" placeholder="••••" />
-            <div class="setup-error" id="setupError"></div>
-            <button class="setup-btn" id="setupBtn">Lock In →</button>
+            <p class="setup-err" id="setupErr"></p>
+            <button class="primary-btn" id="setupBtn">Lock In →</button>
         </div>
     </div>
 
-    <!-- WIN SCREEN -->
-    <div class="screen" id="winScreen" style="display:none">
+    <!-- WIN SCREEN (2-player only) -->
+    <div class="screen" id="winScreen">
         <div class="win-card">
-            <div class="win-icon">🎉</div>
-            <h2 class="win-title" id="winTitle">You cracked it!</h2>
+            <div class="win-emoji" id="winEmoji">🏆</div>
+            <h2 class="win-title" id="winTitle">Player 1 wins!</h2>
             <p class="win-sub" id="winSub"></p>
             <div class="win-stats" id="winStats"></div>
-            <button class="win-btn" id="winBtn">Play Again</button>
+            <button class="primary-btn" id="winBtn">Play Again</button>
         </div>
     </div>
 
-    <!-- MAIN GAME SCREEN -->
-    <div class="screen active" id="gameScreen">
-        <div class="game-wrap">
+    <!-- GAME SCREEN -->
+    <div class="screen" id="gameScreen">
+        <div class="game-layout">
 
-            <!-- PLAYER BADGE (2p mode) -->
-            <div class="player-badge" id="playerBadge" style="display:none">
-                <span id="playerLabel">Player 1</span>
+            <!-- LEFT PANEL -->
+            <div class="left-panel">
+                <div class="player-pill" id="playerPill" style="display:none">
+                    <span class="pill-dot"></span>
+                    <span id="playerLabel">Player 1's turn</span>
+                </div>
+
+                <div class="game-header">
+                    <h1 class="game-title">Crack<br>the Code</h1>
+                    <div class="legend-row">
+                        <span class="leg"><b class="leg-c">C</b> correct digit</span>
+                        <span class="leg"><b class="leg-p">P</b> correct position</span>
+                    </div>
+                </div>
+
+                <p class="game-sub">Guess the secret <span id="digitLabel">4</span>-digit number</p>
+
+                <div class="input-row">
+                    <input type="text" id="guessInput" inputmode="numeric" maxlength="4" autocomplete="off"
+                        autocorrect="off" autocapitalize="off" spellcheck="false" enterkeyhint="done"
+                        placeholder="_ _ _ _" />
+                    <button id="guessBtn">Submit</button>
+                </div>
+
+                <!-- STATUS BOX with big C/P badges -->
+                <div class="status-box" id="statusBox">
+                    <p class="status-msg" id="message">Start guessing…</p>
+                    <div class="status-feedback hidden" id="statusFeedback">
+                        <div class="sf-badge sf-c">
+                            <span class="sf-num" id="sfC">0</span>
+                            <span class="sf-lbl">Correct digit</span>
+                        </div>
+                        <div class="sf-badge sf-p">
+                            <span class="sf-num" id="sfP">0</span>
+                            <span class="sf-lbl">Right position</span>
+                        </div>
+                    </div>
+                    <div class="status-meta">
+                        <span id="attempts">Attempts: 0</span>
+                        <span id="bestScore" style="display:none">Best: —</span>
+                    </div>
+                </div>
+
+                <!-- INLINE WIN — computer mode, replaces separate win screen -->
+                <div class="inline-win" id="inlineWin">
+                    <div class="iw-top">
+                        <span class="iw-emoji">🎉</span>
+                        <div class="iw-text">
+                            <div class="iw-title">You cracked it!</div>
+                            <div class="iw-sub" id="iwSub">Solved in — attempts</div>
+                        </div>
+                    </div>
+                    <div class="iw-stats">
+                        <div class="iw-stat">
+                            <div class="iw-stat-n" id="iwAtt">—</div>
+                            <div class="iw-stat-l">This game</div>
+                        </div>
+                        <div class="iw-stat">
+                            <div class="iw-stat-n" id="iwBest">—</div>
+                            <div class="iw-stat-l">Best ever</div>
+                        </div>
+                    </div>
+                    <button class="iw-btn" id="iwBtn">Play Again →</button>
+                </div>
+
+                <button class="pass-btn" id="passBtn" style="display:none">
+                    Pass to Player <span id="passTarget">2</span> →
+                </button>
+
+                <!-- SPACER + HINT fills dead space at the bottom of the left panel -->
+                <div class="left-spacer">
+                    <div class="hint-card">
+                        <span class="hint-icon">💡</span>
+                        <span class="hint-text">
+                            <strong>C</strong> = the digit exists somewhere in the number.
+                            <strong>P</strong> = the digit is in the exact right position.
+                            Use both together to narrow it down fast.
+                        </span>
+                    </div>
+                </div>
             </div>
 
-            <!-- HEADER -->
-            <div class="game-header">
-                <div>
-                    <h1 class="game-title">Crack the Code</h1>
-                    <p class="game-sub" id="gameSub">Guess the secret <span id="digitCountLabel">4</span>-digit number
-                    </p>
+            <!-- RIGHT PANEL -->
+            <div class="right-panel">
+                <div class="history-head">
+                    <span class="history-title-txt">Guess History</span>
+                    <span class="history-count" id="historyCount">0 guesses</span>
                 </div>
-                <div class="legend">
-                    <span><b class="leg-c">C</b> right digit</span>
-                    <span><b class="leg-p">P</b> right position</span>
-                </div>
-            </div>
-
-            <!-- INPUT -->
-            <div class="input-row">
-                <input type="text" id="guessInput" inputmode="numeric" maxlength="4" autocomplete="off"
-                    autocorrect="off" autocapitalize="off" spellcheck="false" enterkeyhint="done"
-                    placeholder="_ _ _ _" />
-                <button id="guessBtn">Submit</button>
-            </div>
-
-            <!-- STATUS -->
-            <div class="status-row">
-                <p class="message" id="message">Start guessing…</p>
-                <div class="meta">
-                    <span id="attempts">Attempts: 0</span>
-                    <span id="bestScore">Best: —</span>
-                </div>
-            </div>
-
-            <!-- HISTORY -->
-            <div class="history-box">
-                <div class="history-title-row">
-                    <span class="history-title">Guess History</span>
-                </div>
-                <div class="history-header">
+                <div class="history-cols">
                     <span>#</span><span>Guess</span><span>Feedback</span>
                 </div>
-                <div id="historyList"></div>
+                <div class="history-list" id="historyList">
+                    <div class="history-empty" id="historyEmpty">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.5" opacity=".3">
+                            <rect x="3" y="3" width="18" height="18" rx="3" />
+                            <line x1="8" y1="12" x2="16" y2="12" />
+                            <line x1="8" y1="8" x2="16" y2="8" />
+                            <line x1="8" y1="16" x2="12" y2="16" />
+                        </svg>
+                        <p>No guesses yet</p>
+                    </div>
+                </div>
             </div>
-
-            <!-- PASS BUTTON (2p) -->
-            <button class="pass-btn" id="passBtn" style="display:none">Pass to Player 2 →</button>
 
         </div>
     </div>
 
-    <script src="src/script.js"></script>
+    <script src="srcscript.js"></script>
 </body>
 
 </html>
